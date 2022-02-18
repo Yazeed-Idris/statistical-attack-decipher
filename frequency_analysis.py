@@ -152,7 +152,7 @@ for i in range(20):
 cipher_text = cipher_text.replace('x', 'O')
 cipher_text = cipher_text.replace('b', 'F')
 
-# Finding characters by filling missing characters from some words such as mNTENDED --> m is I
+# Finding characters by filling missing characters from some words such as "mNTENDED" --> m is I
 cipher_text = cipher_text.replace('m', 'I')
 cipher_text = cipher_text.replace('q', 'S')
 cipher_text = cipher_text.replace('l', 'W')
@@ -171,7 +171,7 @@ cipher_text = cipher_text.replace('k', 'X')
 cipher_text = cipher_text.replace('d', 'Y')
 cipher_text = cipher_text.replace('o', 'J')
 
-# by elimination w is differently Z
+# by elimination w is defiantly Z
 cipher_text = cipher_text.replace('w', 'Z')
 
 print(cipher_text)
