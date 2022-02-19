@@ -9,7 +9,7 @@ To run the files correctly please follow the steps below.
 <hr style="margin: 0"/>
 
 <h4>
-To change the cipher text you can replace the value in cipher_text with the text you want to decipher in the <strong>frequency_analysis.py</strong> file.
+To change the cipher text you can replace the value in cipher_text with the text you want to decipher in the <b>frequency_analysis.py</b> file.
 <br>
 Then, just run the python file and it should decipher and output the plain text.
 </h4>
