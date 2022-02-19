@@ -1,32 +1,26 @@
+import diffie_hellman
+import socket  # Import socket module
+
+# Bob will choose the private key 3
+private_key = 3
+y = diffie_hellman.compute_key(private_key)
+
 # server.py
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((socket.gethostname(), 1234))
+s.listen(5)
 
-import socket                   # Import socket module
-
-port = 60000                    # Reserve a port for your service.
-s = socket.socket()             # Create a socket object
-host = socket.gethostname()     # Get local machine name
-s.bind((host, port))            # Bind to the port
-s.listen(5)                     # Now wait for client connection.
-
-print('Server listening....')
-
+print('Server listening on port: 1234')
 while True:
-    conn, addr = s.accept()     # Establish connection with client.
-    print('Got connection from', addr)
-    data = conn.recv(1024)
-    print('Server received', repr(data))
-
-    filename='mytext.txt'
-    f = open(filename,'rb')
-    l = f.read(1024)
-    while (l):
-       conn.send(l)
-       print('Sent ',repr(l))
-       l = f.read(1024)
-    f.close()
-
-    print('Done sending')
-    conn.send(b'Thank you for connecting')
-    conn.close()
-
+    clientsocket, address = s.accept()
+    print(f'Connection from {address} has been established!')
+    print(f'Receiving data...')
+    x = int(clientsocket.recv(1024).decode('utf-8'))
+    print(f'Received x= {x}')
+    print(f'Sending generated key {y}')
+    clientsocket.send(str(y).encode('utf-8'))
+    clientsocket.close()
+    break
+shared_key = diffie_hellman.compute_shared_key(x, private_key)
+print(f'The shared key is {shared_key}')
 

@@ -8,20 +8,13 @@ def max_in_dict(dic):
     return el
 
 
-def window(corpus, window_size):
-    returned_dict = {}
-    for i in range(len(corpus) - 2):
-        if corpus[i:i+window_size] not in list(returned_dict.keys()): returned_dict[corpus[i:i+window_size]] = 1
-        else: returned_dict[corpus[i:i+window_size]] += 1
-    return dict(sorted(returned_dict.items(), key=lambda x: x[1], reverse=True))
-
-
 common_trigram = 'THE'
 common_trigram2 = 'AND'
 
-common_letters = ['E', 'T', 'A', 'O', 'I', 'N', 'S', 'H', 'R', 'D', 'L', 'C', 'U', 'M', 'W', 'F', 'G', 'Y', 'P', 'B', 'V', 'K', 'J', 'X', 'Q', 'Z']
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
+common_letters = ['E', 'T', 'A', 'O', 'I', 'N', 'S', 'H', 'R', 'D', 'L', 'C', 'U', 'M', 'W', 'F', 'G', 'Y', 'P', 'B',
+                  'V', 'K', 'J', 'X', 'Q', 'Z']
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+            'v', 'w', 'x', 'y', 'z']
 
 cipher_text = '''ytn xqavhq yzhu  xu qzupvd ltmat qnncq vgxzy hmrty vbynh ytmq ixur qyhvurn
 vlvhpq yhme ytn gvrrnh bnniq imsn v uxuvrnuvhmvu yxx
@@ -111,7 +104,6 @@ cipher_text = cipher_text.lower()
 MyList = cipher_text.split()
 my_dict = {i: MyList.count(i) for i in MyList}
 
-
 trigrams_list = {}
 for word, count in my_dict.items():
     if len(word) == 3:
@@ -142,7 +134,7 @@ charFrequincies = {}
 for i in range(len(alphabet)):
     charFrequincies[alphabet[i]] = cipher_text.count(alphabet[i])
 
-# Replacing remaining characters by their frequencies
+# Replacing characters by their frequencies
 for i in range(20):
     max_char = max_in_dict(charFrequincies)
     cipher_text.replace(max_char, common_letters[i])
@@ -175,10 +167,3 @@ cipher_text = cipher_text.replace('o', 'J')
 cipher_text = cipher_text.replace('w', 'Z')
 
 print(cipher_text)
-
-
-
-
-
-
-
